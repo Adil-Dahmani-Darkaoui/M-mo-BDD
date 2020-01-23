@@ -1,0 +1,32 @@
+Lister les articles visibles aujourd’hui avec le nom de la catégorie et le pseudo de
+l’auteur, par date de publication décroissante
+
+SELECT `Titre`, Auteur_Pseudo, `Catégories_Nom de la catégorie`
+FROM article
+INNER JOIN catégories_has_article
+ON article.ID = catégories_has_article.Article_ID
+WHERE `Date de fin de publication`> '2020-01-23'
+and `Date de publication` <= '2020-01-23'
+ORDER BY `Date de publication`DESC
+
+avec racourcies :
+
+SELECT `Titre`, Auteur_Pseudo, `Catégories_Nom de la catégorie`
+FROM article a
+INNER JOIN catégories_has_article ca
+ON a.ID = ca.Article_ID
+WHERE `Date de fin de publication`> '2020-01-23'
+and `Date de publication` <= '2020-01-23'
+ORDER BY `Date de publication`DESC
+
+Avec 2 jointures :
+
+SELECT `Titre`, Auteur_Pseudo, `Catégories_Nom de la catégorie`, Nom
+FROM article a
+INNER JOIN catégories_has_article ca
+ON a.ID = ca.Article_ID
+JOIN membres m
+ON a.Auteur_Pseudo = m.Pseudo
+WHERE `Date de fin de publication`> '2020-01-23'
+and `Date de publication` <= '2020-01-23'
+ORDER BY `Date de publication`DESC
